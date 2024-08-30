@@ -6,6 +6,7 @@ const router = express.Router();
 
 const regex = new RegExp('^[a-zA-Z\\s]*$'); //Esta expresión regular solo acepta letras minúsculas o mayúsculas
 const regex_correo = new RegExp(/^(?=.{1,255}$)(?=.*@.{1,64}$)[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/); //Esta expresión valida la longitud mínima y máxima del correo, 64 carácteres antes del @ y 255 después
+
 const bcrypt = require('bcryptjs');
 const longitud_contrasena_encriptada = 10; 
 
@@ -94,10 +95,12 @@ router.post("/", function (req, res) {
             if (telefono.length == 0) {
                 errores.error_telefono = "Este campo es obligatorio.";
             }
-            if (isNaN(telefono)) { //isNaN valida que el campo solo contega carácteres numéricos
-                errores.error_telefono = "Se debe ingresar solo números.";
-            }
+            
         }
+        if (isNaN(telefono)) { //isNaN valida que el campo solo contega carácteres numéricos
+            errores.error_telefono = "Se debe ingresar solo números.";
+        }
+
 
         //Validar longitud mínima de la contraseña
         if (contrasena.length < 8 && contrasena.length > 0) {
