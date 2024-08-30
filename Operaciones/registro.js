@@ -39,12 +39,12 @@ router.post("/", function (req, res) {
     const datos = req.body;
     const errores = {};
 
-    nombres = datos.nombres;
-    apellido_paterno = datos.apellido_paterno;
-    apellido_materno = datos.apellido_materno;
-    telefono = datos.telefono;
-    correo = datos.correo;
-    contrasena = datos.contrasena;
+    nombres = datos.nombres || '';
+    apellido_paterno = datos.apellido_paterno || '';
+    apellido_materno = datos.apellido_materno || '';
+    telefono = datos.telefono || '';
+    correo = datos.correo || '';
+    contrasena = datos.contrasena || '';
    
 
     // Validar si el correo ya está en uso antes de cualquier otra validación
