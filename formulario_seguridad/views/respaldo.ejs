@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+
+    
+    <div class="container mt-5">
+        <h1 class="mb-4">Registro</h1>
+        <form action="/validar" method="post">
+            <div class="form-group">
+                <label for="nombres">Nombres:</label>
+                <input type="text" class="form-control" name="nombres" id="nombres" required>
+                <% if (typeof error_nombres !== 'undefined' && error_nombres) { %>
+                    <small class="text-danger"><%= error_nombres %></small>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <label for="apellido_paterno">Apellido paterno:</label>
+                <input type="text" class="form-control" name="apellido_paterno" id="apellido_paterno" required>
+                <% if (typeof error_apellido_paterno !== 'undefined' && error_apellido_paterno) { %>
+                    <small class="text-danger"><%= error_apellido_paterno %></small>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <label for="apellido_materno">Apellido Materno:</label>
+                <input type="text" class="form-control" name="apellido_materno" id="apellido_materno" required>
+                <% if (typeof error_apellido_materno !== 'undefined' && error_apellido_materno) { %>
+                    <small class="text-danger"><%= error_apellido_materno %></small>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <label for="telefono">Número de teléfono:</label>
+                <input type="text" class="form-control" name="telefono" id="telefono" required>
+                <% if (typeof error_telefono !== 'undefined' && error_telefono) { %>
+                    <small class="text-danger"><%= error_telefono %></small>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <label for="correo">Correo:</label>
+                <input type="email" class="form-control" name="correo" id="correo" required>
+                <% if (typeof error_correo !== 'undefined' && error_correo) { %>
+                    <small class="text-danger"><%= error_correo %></small>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <label for="contrasena">Contraseña:</label>
+                <input type="password" class="form-control" name="contrasena" id="contrasena" required>
+                <% if (typeof error_contrasena !== 'undefined' && error_contrasena) { %>
+                    <small class="text-danger"><%= error_contrasena %></small>
+                <% } %>
+            </div>
+            <button type="submit" class="btn btn-primary">Registrar</button>
+        </form>
+    </div>
+    
+    
+
+    <!-- Bootstrap JS (opcional) -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.0.6/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

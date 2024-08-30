@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Formulario</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+    <link rel="stylesheet" href="../style/registro.css">
+</head>
+<body>
+    <!-- LINK DE LA PLANTILLA DEL DISEÑO: https://epicbootstrap.com/snippets/registration-->
+    <div class="registration-form">
+        <form action="/" method="post">
+            <div class="form-icon">
+                <span><i class="icon icon-user"></i></span>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" name="nombres" id="nombres" placeholder="Nombre(s)*" value="<%= nombres %>">
+                <% if (typeof error_nombres !== 'undefined' && error_nombres) { %>
+                    <small class="text-danger"><%= error_nombres %></small>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" name="apellido_paterno" id="apellido_paterno" placeholder="Apellido paterno*" value="<%= apellido_paterno %>">
+                <% if (typeof error_apellido_paterno !== 'undefined' && error_apellido_paterno) { %>
+                    <small class="text-danger"><%= error_apellido_paterno %></small>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <input type="text" class="form-control item" name="apellido_materno" id="apellido_materno" placeholder="Apellido materno" value="<%= apellido_materno %>">
+                <% if (typeof error_apellido_materno !== 'undefined' && error_apellido_materno) { %>
+                    <small class="text-danger"><%= error_apellido_materno %></small>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <input type="tel" class="form-control item" name="telefono" id="telefono" placeholder="Telefono" value="<%= telefono %>" >
+                <% if (typeof error_telefono !== 'undefined' && error_telefono) { %>
+                    <small class="text-danger"><%= error_telefono %></small>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <input type="email" class="form-control item" name="correo" id="correo" placeholder="Correo" value="<%= correo %>">
+                <% if (typeof error_correo !== 'undefined' && error_correo) { %>
+                    <small class="text-danger"><%= error_correo %></small>
+                <% } %>
+            </div>
+            <div class="form-group">
+                <input type="password" class="form-control item" name="contrasena" id="contrasena" placeholder="Contraseña" value="<%= contrasena %>">
+                <% if (typeof error_contrasena !== 'undefined' && error_contrasena) { %>
+                    <small class="text-danger"><%= error_contrasena %></small>
+                <% } %>
+            </div>
+            
+            
+            <div class="form-group">
+                <button type="submit" class="btn btn-block create-account">Registrar Usuario</button>
+            </div>
+        </form>
+       
+    </div>
+</body>
+</html>
