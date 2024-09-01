@@ -8,6 +8,8 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style/registro.css">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
 </head>
 <body>
     <!-- LINK DE LA PLANTILLA DEL DISEÑO: https://epicbootstrap.com/snippets/registration-->
@@ -17,7 +19,7 @@
                 <span><i class="icon icon-user"></i></span>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" name="nombres" id="nombres" placeholder="Nombre(s)*" value="<%= nombres %>">
+                <input type="text" class="form-control item" name="nombres" id="nombres" placeholder="Nombre(s)*" value="<%= nombres %>" >
                 <% if (typeof error_nombres !== 'undefined' && error_nombres) { %>
                     <small class="text-danger"><%= error_nombres %></small>
                 <% } %>
@@ -39,6 +41,7 @@
                 <% if (typeof error_telefono !== 'undefined' && error_telefono) { %>
                     <small class="text-danger"><%= error_telefono %></small>
                 <% } %>
+                
             </div>
             <div class="form-group">
                 <input type="email" class="form-control item" name="correo" id="correo" placeholder="Correo" value="<%= correo %>">
@@ -52,8 +55,8 @@
                     <small class="text-danger"><%= error_contrasena %></small>
                 <% } %>
             </div>
-            
-            
+
+                        
             <div class="form-group">
                 <button type="submit" class="btn btn-block create-account">Registrar Usuario</button>
             </div>

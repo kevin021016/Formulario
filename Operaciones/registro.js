@@ -8,7 +8,7 @@ const regex = new RegExp('^[a-zA-Z\\s]*$'); //Esta expresión regular solo acept
 const regex_correo = new RegExp(/^(?=.{1,255}$)(?=.*@.{1,64}$)[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/); //Esta expresión valida la longitud mínima y máxima del correo, 64 carácteres antes del @ y 255 después
 
 const bcrypt = require('bcryptjs');
-const longitud_contrasena_encriptada = 10; 
+const longitud_contrasena_encriptada = 10;
 
 let nombres
 let apellido_paterno
@@ -39,13 +39,14 @@ router.post("/", function (req, res) {
     const datos = req.body;
     const errores = {};
 
+    //Si los datos ingresados 
     nombres = datos.nombres || '';
     apellido_paterno = datos.apellido_paterno || '';
     apellido_materno = datos.apellido_materno || '';
     telefono = datos.telefono || '';
     correo = datos.correo || '';
     contrasena = datos.contrasena || '';
-   
+
 
     // Validar si el correo ya está en uso antes de cualquier otra validación
     let buscar = "SELECT * FROM tabla_usuarios WHERE correo = ?";
@@ -55,6 +56,12 @@ router.post("/", function (req, res) {
         } else if (row.length > 0) {
             errores.error_correo = "Este correo ya está en uso.";
         }
+
+        /*if(datos.nombres == '' || datos.apellido_paterno == '' || datos.apellido_materno === null || datos.telefono == '' || datos.correo == '' || datos.contrasena == ''){
+            errores.error_formulario = "Hubo un problema al intentar registrarse";
+        }*/
+
+        
 
 
         /*TODO: 
@@ -95,7 +102,7 @@ router.post("/", function (req, res) {
             if (telefono.length == 0) {
                 errores.error_telefono = "Este campo es obligatorio.";
             }
-            
+
         }
         if (isNaN(telefono)) { //isNaN valida que el campo solo contega carácteres numéricos
             errores.error_telefono = "Se debe ingresar solo números.";
@@ -129,7 +136,32 @@ router.post("/", function (req, res) {
             errores.error_correo = "La estructura del correo no es valida";
         }
 
-        // Si hay errores, renderizar la vista con los errores
+        //Si el atributop "name" de los inputs no están presentes en la solicitud post, indicar error.
+        if (!datos.nombres && typeof datos.nombres === 'undefined') {
+            errores.error_nombres = "Campo Nombres no presente en la solicitud."
+        }
+
+        if (!datos.apellido_paterno && typeof datos.apellido_paterno === 'undefined') {
+            errores.error_apellido_paterno = "Campo Apellido paterno no presente en la solicitud."
+        }
+
+        if (!datos.apellido_materno && typeof datos.apellido_materno === 'undefined') {
+            errores.error_apellido_materno = "Campo Apellido materno no presente en la solicitud."
+        }
+
+        if (!datos.telefono && typeof datos.telefono === 'undefined') {
+            errores.error_telefono = "Campo Teléfno no presente en la solicitud."
+        }
+
+        if (!datos.correo && typeof datos.correo === 'undefined') {
+            errores.error_correo = "Campo Correo no presente en la solicitud."
+        }
+
+        if (!datos.contrasena && typeof datos.contrasena === 'undefined') {
+            errores.error_contrasena = "Campo Contraseña no presente en la solicitud."
+        }
+
+        // Si hay errores, renderizar la página con los errores
         if (Object.keys(errores).length > 0) {
             return res.render('registro', {
                 error_nombres: errores.error_nombres,
@@ -138,6 +170,7 @@ router.post("/", function (req, res) {
                 error_telefono: errores.error_telefono,
                 error_correo: errores.error_correo,
                 error_contrasena: errores.error_contrasena,
+                error_formulario: errores.error_formulario,
                 nombres: nombres,
                 apellido_paterno: apellido_paterno,
                 apellido_materno: apellido_materno,
@@ -146,8 +179,8 @@ router.post("/", function (req, res) {
                 contrasena: contrasena
             });
         }
-        
-        
+
+
 
         const contrasena_encriptada = bcrypt.hashSync(contrasena, longitud_contrasena_encriptada); //Encriptr contraseña para almacenarla posteriormente en la bd
 
