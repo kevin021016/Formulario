@@ -8,7 +8,7 @@
     <link href="https://cdnjs.cloudflare.com/ajax/libs/simple-line-icons/2.4.1/css/simple-line-icons.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="../style/registro.css">
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
 
 </head>
 <body>
@@ -25,7 +25,7 @@
                 <% } %>
             </div>
             <div class="form-group">
-                <input type="text" class="form-control item" name="apellido_paterno" id="apellido_paterno" placeholder="Apellido paterno*" value="<%= apellido_paterno %>">
+                <input type="text" class="form-control item" name="apellido_paterno" id="apellido_paterno*" placeholder="Apellido paterno*" value="<%= apellido_paterno %>">
                 <% if (typeof error_apellido_paterno !== 'undefined' && error_apellido_paterno) { %>
                     <small class="text-danger"><%= error_apellido_paterno %></small>
                 <% } %>
@@ -37,20 +37,20 @@
                 <% } %>
             </div>
             <div class="form-group">
-                <input type="tel" class="form-control item" name="telefono" id="telefono" placeholder="Telefono" value="<%= telefono %>" >
+                <input type="tel" class="form-control item" name="telefono" id="telefono" placeholder="Telefono*" value="<%= telefono %>" >
                 <% if (typeof error_telefono !== 'undefined' && error_telefono) { %>
                     <small class="text-danger"><%= error_telefono %></small>
                 <% } %>
                 
             </div>
             <div class="form-group">
-                <input type="email" class="form-control item" name="correo" id="correo" placeholder="Correo" value="<%= correo %>">
+                <input type="email" class="form-control item" name="correo" id="correo" placeholder="Correo*" value="<%= correo %>">
                 <% if (typeof error_correo !== 'undefined' && error_correo) { %>
                     <small class="text-danger"><%= error_correo %></small>
                 <% } %>
             </div>
             <div class="form-group">
-                <input type="password" class="form-control item" name="contrasena" id="contrasena" placeholder="Contraseña" value="<%= contrasena %>">
+                <input type="password" class="form-control item" name="contrasena" id="contrasena*" placeholder="Contraseña*" value="<%= contrasena %>">
                 <% if (typeof error_contrasena !== 'undefined' && error_contrasena) { %>
                     <small class="text-danger"><%= error_contrasena %></small>
                 <% } %>
@@ -63,5 +63,10 @@
         </form>
        
     </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script src="../Scripts/sweetalert.js"></script>
+    <script src="../Scripts/campos.js"></script>
+    
 </body>
 </html>

@@ -4,9 +4,9 @@ const conexion = require('../config/db');
 const router = express.Router();
 
 
-const regex = new RegExp('^[a-zA-Z\\s]*$'); //Esta expresión regular solo acepta letras minúsculas o mayúsculas
+const regex = new RegExp('^[a-zA-Z\\sáéíóúÁÉÍÓÚñÑ]*$'); //Esta expresión regular solo acepta letras minúsculas o mayúsculas, además de la letra ñ y letras con tilde
 const regex_correo = new RegExp(/^(?=.{1,255}$)(?=.*@.{1,64}$)[\w.%+-]+@[\w.-]+\.[a-zA-Z]{2,}$/); //Esta expresión valida la longitud mínima y máxima del correo, 64 carácteres antes del @ y 255 después
-
+//VALIDAR QUE LA EXPRESIÓN REGULAR ACEPTE TILDES
 const bcrypt = require('bcryptjs');
 const longitud_contrasena_encriptada = 10;
 
@@ -17,7 +17,7 @@ let telefono
 let correo
 let contrasena
 
-//Este get funciona para darles un valor vacío a las variables y evitar que se produzca el error que indica que estas no están definidos
+//Este get funciona para darles un valor vacío a los campos a la hora de cargar la página
 router.get("/", function (req, res) {
     res.render('registro', {
         nombres: '',
@@ -60,9 +60,6 @@ router.post("/", function (req, res) {
         /*if(datos.nombres == '' || datos.apellido_paterno == '' || datos.apellido_materno === null || datos.telefono == '' || datos.correo == '' || datos.contrasena == ''){
             errores.error_formulario = "Hubo un problema al intentar registrarse";
         }*/
-
-        
-
 
         /*TODO: 
         * SERIE DE IF QUE VALIDEN SI LOS CAMPOS ESTÁN VACÍOS. SE NECESITA UNA VARIABLE ERROR PARA CADA CAMPO
@@ -191,11 +188,9 @@ router.post("/", function (req, res) {
                 throw error;
             } else {
                 console.log("Datos almacenados correctamente");
-                res.redirect('/');
+                res.redirect('/?registro=exitoso');
             }
         });
-
-
 
 
 
@@ -203,3 +198,4 @@ router.post("/", function (req, res) {
 });
 
 module.exports = router;
+
